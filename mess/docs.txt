@@ -6,6 +6,7 @@ React - User Interface
 
 MongoDB + Prisma - Backend 
 Tailwind - Styling 
+    @tailwindcss/forms - form styling
 
 Pusher - Real Time Messsages + Notifications
 Cloudinary - Image Upload 
