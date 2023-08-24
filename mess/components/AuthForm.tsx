@@ -35,11 +35,18 @@ const AuthForm = () => {
     }
   })
 
-  const onSubmit: SubmitHandler <FieldValues> = (data) => { 
+  const onSubmit: SubmitHandler <FieldValues> = async (data) => { 
     setIsLoading(true); 
 
     if(variant === 'REGISTER') { 
-      //fetch register
+      const response = await fetch('/api/register', { 
+        method: "POST", 
+        mode: 'cors', 
+        body: JSON.stringify(data),  
+        headers: { 
+          'Content-Type': "applcation/json"
+        }
+      })
     }
 
     if(variant === 'LOGIN') { 
