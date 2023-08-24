@@ -23,7 +23,6 @@ const Button: React.FC <ButtonProps> = ({ type, fullWidth, children, onClick, se
             rounded-md
             px-3
             py-2
-            mt-6
             text-sm
             font-semibold
             focus-visible:outline
