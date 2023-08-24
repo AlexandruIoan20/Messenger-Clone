@@ -1,0 +1,13 @@
+TOOLS: 
+
+NextJS (Typescript) - Main App
+NextAuth - Security + Login
+React - User Interface 
+
+MongoDB + Prisma - Backend 
+Tailwind - Styling 
+
+Pusher - Real Time Messsages + Notifications
+Cloudinary - Image Upload 
+
+Vercel - Deploy 
