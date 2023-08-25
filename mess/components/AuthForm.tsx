@@ -1,23 +1,33 @@
 'use client'; 
 
-import { useState, useCallback } from 'react'; 
+import { useState, useCallback, useEffect } from 'react'; 
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
-import { signIn } from 'next-auth/react'; 
+import { signIn, useSession} from 'next-auth/react'; 
+import { useRouter } from 'next/navigation';
 
 import AuthSocialButton from './buttons/AuthSocialButton';
 
 import Button from './buttons/Button';
 import Input from './inputs/Input';
 
-import { BsGithub, BsGoogle } from 'react-icons/bs'
+import { BsGithub, BsGoogle } from 'react-icons/bs'; 
 
 type Variant = 'LOGIN' | 'REGISTER'
 
 
 const AuthForm = () => {
+  const session = useSession(); 
+  const router = useRouter(); 
+
   const [ variant, setVariant ] = useState <Variant> ('LOGIN'); 
   const [ isLoading, setIsLoading ] = useState <boolean> (false); 
+
+  useEffect( () => {
+    if(session?.status === 'authenticated') { 
+      router.push("/users"); 
+    }
+   }, [session?.status, router])
 
   const toggleVariant = useCallback( () => { 
     if(variant ===  'LOGIN') 
@@ -52,11 +62,11 @@ const AuthForm = () => {
       }); 
 
       if(response.ok) { 
+        signIn('credentials', data);
         setIsLoading(false); 
-        setVariant('LOGIN'); 
         return; 
       } else { 
-        toast.error('Som:ething went wrong!'); 
+        toast.error('Something went wrong!'); 
       }
 
       setIsLoading(false); 
@@ -74,7 +84,8 @@ const AuthForm = () => {
         }
 
         if(callback?.ok && !callback.error) { 
-          toast.success('Success!')
+          router.push("/users"); 
+          toast.success('Logged In!')
         }
       }).finally( () => { 
         setIsLoading(false); 
@@ -93,7 +104,8 @@ const AuthForm = () => {
       }
 
       if(callback?.ok && !callback.error) { 
-        toast.success('Logged In!')
+        toast.success('Logged In!'); 
+        router.push("/users"); 
       }
     }).finally( () => { 
       setIsLoading(false); 
