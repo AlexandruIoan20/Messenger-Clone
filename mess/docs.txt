@@ -2,7 +2,10 @@ TOOLS:
 
 NextJS (Typescript) - Main App
 NextAuth - Security + Login
+
 React - User Interface 
+    react-hot-toast -> handling errors
+    react-icons -> icons
 
 MongoDB + Prisma - Backend 
 Tailwind - Styling 

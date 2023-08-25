@@ -3,6 +3,8 @@
 import { useState, useCallback } from 'react'; 
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
+import { signIn } from 'next-auth/react'; 
+
 import AuthSocialButton from './buttons/AuthSocialButton';
 
 import Button from './buttons/Button';
@@ -54,20 +56,48 @@ const AuthForm = () => {
         setVariant('LOGIN'); 
         return; 
       } else { 
-        toast.error('Something went wrong!'); 
+        toast.error('Som:ething went wrong!'); 
       }
 
       setIsLoading(false); 
     }
 
     if(variant === 'LOGIN') { 
-      //NEXT AUTH sign in
+      console.log(data);  
+      signIn('credentials', {
+        ...data, 
+        redirect: false
+      }).then((callback: any) => { 
+        console.log(callback); 
+        if(callback.error) { 
+          toast.error('Invalid credentials!')
+        }
+
+        if(callback?.ok && !callback.error) { 
+          toast.success('Success!')
+        }
+      }).finally( () => { 
+        setIsLoading(false); 
+      })
     }
   }
 
   const socialAction = (action: string) => { 
     setIsLoading(true); 
 
+    signIn(action, { 
+      redirect: false, 
+    }).then( (callback) => { 
+      if(callback?.error) { 
+        toast.error('Invalid Credentials')
+      }
+
+      if(callback?.ok && !callback.error) { 
+        toast.success('Logged In!')
+      }
+    }).finally( () => { 
+      setIsLoading(false); 
+    })
     //Next Auth Social Sign In
   }
   return (

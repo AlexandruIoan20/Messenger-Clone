@@ -25,6 +25,5 @@ export const POST = async (request: Request) => {
     } catch(err: any) { 
         console.log(err, "REGISTRATION_ERROR");
         return new NextResponse('Internal Error', { status: 500 })  
-
     }
 }
