@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from 'react'; 
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
 import AuthSocialButton from './buttons/AuthSocialButton';
 
 import Button from './buttons/Button';
@@ -46,7 +47,17 @@ const AuthForm = () => {
         headers: { 
           'Content-Type': "applcation/json"
         }
-      })
+      }); 
+
+      if(response.ok) { 
+        setIsLoading(false); 
+        setVariant('LOGIN'); 
+        return; 
+      } else { 
+        toast.error('Something went wrong!'); 
+      }
+
+      setIsLoading(false); 
     }
 
     if(variant === 'LOGIN') { 
