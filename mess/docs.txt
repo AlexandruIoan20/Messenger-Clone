@@ -2,6 +2,7 @@ TOOLS:
 
 NextJS (Typescript) - Main App
 NextAuth - Security + Login
+    next-superjson-plugin -> sanitize props from server side components to client side components (ex: sidebar - desktopsidebar)
 
 React - User Interface 
     react-hot-toast -> handling errors
