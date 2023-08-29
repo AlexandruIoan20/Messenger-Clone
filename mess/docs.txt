@@ -16,3 +16,5 @@ Pusher - Real Time Messsages + Notifications
 Cloudinary - Image Upload 
 
 Vercel - Deploy 
+
+PLACEHOLDERS: 
