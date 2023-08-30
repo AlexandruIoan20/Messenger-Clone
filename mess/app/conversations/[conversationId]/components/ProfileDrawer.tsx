@@ -8,7 +8,7 @@ import { format } from 'date-fns'
 
 import { IoCloseSharp, IoTrash } from 'react-icons/io5'; 
 import Avatar from "@components/Avatar";
-import Modal from "@components/Modal";
+import ConfirmModal from "./ConfirmModal";
 
 interface ProfileDrawerProps { 
     data: Conversation & { 
@@ -39,11 +39,10 @@ const ProfileDrawer = ({ data, isOpen, onClose }: ProfileDrawerProps) => {
     }, [data])
   return (
     <>
-        <Modal isOpen = { isModalOpen    } onClose = { () => { setIsModalOpen(false)}}>
-            <div className = 'bg-white p-5'>
-                <p> Hello Modal! </p>
-            </div>    
-        </Modal> 
+        <ConfirmModal 
+            isOpen = { isModalOpen } 
+            onClose = { () => { setIsModalOpen(false)}}
+        /> 
         <Transition.Root show = { isOpen } as = { Fragment }>
             <Dialog as = "div" className = 'relative z-50' onClose = { onClose }>
                 <Transition.Child 
