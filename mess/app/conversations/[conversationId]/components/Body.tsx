@@ -22,7 +22,7 @@ const Body = ({ initialMessages }: BodyProps) => {
         method: "POST", 
         mode: 'cors', 
         headers: { 
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json '
         }
       }); 
       console.log(response); 
