@@ -4,13 +4,11 @@ import { FullConversationType } from "@app/types";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import useConversation from "@app/hooks/useConversation";
-import { useSession } from "next-auth/react";
 
 import { MdOutlineGroupAdd } from 'react-icons/md'; 
 import ConversationBox from "./ConversationBox";
 
 import clsx from "clsx";
-import { format } from "date-fns";
 
 interface ConversationListProps { 
     initialItems: FullConversationType []
