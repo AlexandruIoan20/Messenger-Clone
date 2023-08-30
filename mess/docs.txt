@@ -16,7 +16,8 @@ Pusher - Real Time Messsages + Notifications
 Cloudinary - Image Upload 
 
 JS 
-    date-fns -> 
+    date-fns -> date format 
+    @headlessui/react -> 
 
 Vercel - Deploy 
 
