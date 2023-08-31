@@ -20,7 +20,8 @@ Cloudinary - Image Upload
 
 JS 
     date-fns -> date format 
-    @headlessui/react -> 
+    @headlessui/react -> Transitions and Dialogues (Modal Component)
+    lodash ->
 
 Vercel - Deploy 
 
