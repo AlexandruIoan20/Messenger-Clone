@@ -7,6 +7,8 @@ NextAuth - Security + Login
 React - User Interface 
     react-hot-toast -> handling errors
     react-icons -> icons
+    react-select -> 
+    react-form-hook -> forms
 
 MongoDB + Prisma - Backend 
 Tailwind - Styling 
