@@ -12,6 +12,7 @@ import clsx from "clsx";
 import { format } from "date-fns";
 
 import Avatar from "@components/Avatar";
+import AvatarGroup from "@components/AvatarGroup";
 
 interface ConversationBoxProps { 
     data: FullConversationType, 
@@ -70,7 +71,14 @@ const ConversationBox = ({ data, selected }: ConversationBoxProps) => {
             w-full relative flex items-center space-x-3 hover:bg-neutral-100 rounded-lg transition cursor-pointer p-3
         `, 
         selected ? 'bg-neutral-100': 'bg-white')}>
-            <Avatar user = { otherUser } /> 
+            { data.isGroup ? 
+                ( 
+                    <AvatarGroup users = { data.users } /> 
+                ) : 
+                ( 
+                    <Avatar user = { otherUser } /> 
+                )
+            }
             <div className = 'min-w-0 flex-1'>
                 <div className = 'focus:outline-none'>
                     <div className = 'flex justify-between items-center mb-1'>
