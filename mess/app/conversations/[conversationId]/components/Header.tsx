@@ -21,8 +21,8 @@ interface HeaderProps {
 const Header = ({ conversation }: HeaderProps) => {
     const otherUser = useOtherUser(conversation); 
     const [ drawerOpen, setDrawerOpen ] = useState <boolean> (false); 
-    const { members } = useActiveList(); 
 
+    const { members } = useActiveList(); 
     const isActive = members.indexOf(otherUser?.email!) !== -1; 
 
     const statusText = useMemo( () => { 
