@@ -13,7 +13,7 @@ import GroupChatModal from "./GroupChatModal";
 import clsx from "clsx";
 import { User } from "@prisma/client";
 import { pusherClient } from "@app/libs/pusher";
-import { find } from "lodash";
+import { find, update } from "lodash";
 
 interface ConversationListProps { 
     users: User [] 
@@ -45,15 +45,30 @@ const ConversationList = ({ users, initialItems }: ConversationListProps) => {
                     return current; 
                 }; 
 
-                return [ ...current, conversation ]; 
+                return [ conversation, ...current, ]; 
             })
         }
 
+        const updateHandler = (conversation: FullConversationType) =>  {
+            setItems( (current) => current.map((currentConversation) => { 
+                if(currentConversation.id === conversation.id) { 
+                    return { 
+                        ...currentConversation, 
+                        messages: conversation.messages
+                    }
+                };
+
+                return currentConversation; 
+            }))
+        }
+
         pusherClient.bind('conversation:new', newHandler);
+        pusherClient.bind('conversation:update', updateHandler); 
         
         return () => { 
             pusherClient.unsubscribe(pusherKey); 
             pusherClient.unbind('conversation:new', newHandler); 
+            pusherClient.unbind('conversation:update', updateHandler); 
         }
     }, [pusherKey])
   return (
